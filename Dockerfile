@@ -10,9 +10,10 @@ RUN apt-get update && apt-get install -y \
   rsync \
   git \
   curl \
-  rlwrap \
-  npm
-
+  rlwrap 
+  
+  RUN npm install -g npm@7.13.0
+  
 #install node from nodesource
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
   && apt-get install -y nodejs
