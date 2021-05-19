@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y \
   rsync \
   git \
   curl \
-  rlwrap 
-  
-  RUN npm install -g npm@7.13.0
+  rlwrap \
+  npm \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   
 #install node from nodesource
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
@@ -32,15 +32,15 @@ RUN mkdir /usr/games/minecraft \
 RUN cd /usr/games/minecraft \
   && apt-get update \
   && apt-get install -y build-essential \
-  && npm install \
-  && apt-get remove --purge -y build-essential \
-  && apt-get autoremove -y \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#  && npm install \
+#  && apt-get remove --purge -y build-essential \
+#  && apt-get autoremove -y \
+#  && apt-get clean \
+#  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #configure and run supervisor
-RUN cp /usr/games/minecraft/init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+#RUN cp /usr/games/minecraft/init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
+#CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
 
 #entrypoint allowing for setting of mc password
 COPY entrypoint.sh /entrypoint.sh
