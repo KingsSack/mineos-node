@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
   rlwrap \
   npm \
   openjdk-16-jre-headless \
-  ca-certificates-java \
+# ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   
 #install node from nodesource
