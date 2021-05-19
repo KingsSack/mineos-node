@@ -15,9 +15,10 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #install node from nodesource
-RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
- && dpkg -i node.deb \
- && rm node.deb
+#RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
+# && dpkg -i node.deb \
+# && rm node.deb
+
 
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
