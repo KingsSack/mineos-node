@@ -10,10 +10,11 @@ RUN apt-get update && apt-get install -y \
   rsync \
   git \
   curl \
-  rlwrap
+  rlwrap \
+  npm
 
 #install node from nodesource
-RUN curl -fsSL https://deb.nodesource.com/setup_8.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
   && apt-get install -y nodejs
 #RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
 # && dpkg -i node.deb \
