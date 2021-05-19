@@ -1,4 +1,4 @@
-FROM debian:sid-slim
+FROM adoptopenjdk/openjdk16:debianslim-jre
 # debian test
 MAINTAINER William Dizon <wdchromium@gmail.com>
 
@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
   curl \
   rlwrap \
   npm \
-  openjdk-16-jre-headless \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   
 #install node from nodesource
