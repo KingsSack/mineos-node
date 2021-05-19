@@ -3,9 +3,11 @@ FROM adoptopenjdk/openjdk16:debian-jre
 MAINTAINER William Dizon <wdchromium@gmail.com>
 
 #install node from nodesource
-RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
- && dpkg -i node.deb \
- && rm node.deb
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+apt-get install -y nodejs
+#RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
+# && dpkg -i node.deb \
+# && rm node.deb
 
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
