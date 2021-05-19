@@ -29,9 +29,9 @@ RUN mkdir /usr/games/minecraft \
   && chmod +x webui.js mineos_console.js service.js
 
 #build npm deps and clean up apt for image minimalization
-RUN cd /usr/games/minecraft \
-  && apt-get update \
-  && apt-get install -y build-essential \
+#RUN cd /usr/games/minecraft \
+#  && apt-get update \
+#  && apt-get install -y build-essential \
 #  && npm install \
 #  && apt-get remove --purge -y build-essential \
 #  && apt-get autoremove -y \
