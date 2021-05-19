@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM node:16-buster
 MAINTAINER William Dizon <wdchromium@gmail.com>
 
 #update and accept all prompts
@@ -13,12 +13,6 @@ RUN apt-get update && apt-get install -y \
   openjdk-17-jre-headless \
   ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-#install node from nodesource
-#RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
-# && dpkg -i node.deb \
-# && rm node.deb
-
 
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
