@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
   git \
   curl \
   rlwrap \
-  default-jre-headless \
+  openjdk-16-jre-headless \
   ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
