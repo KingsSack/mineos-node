@@ -2,6 +2,16 @@ FROM adoptopenjdk/openjdk16:debian-jre
 # alpine linux with java runtime
 MAINTAINER William Dizon <wdchromium@gmail.com>
 
+#update and accept all prompts
+RUN apt-get update && apt-get install -y \
+  supervisor \
+  rdiff-backup \
+  screen \
+  rsync \
+  git \
+  curl \
+  rlwrap
+
 #install node from nodesource
 RUN curl -fsSL https://deb.nodesource.com/setup_8.x | bash - \
   && apt-get install -y nodejs
