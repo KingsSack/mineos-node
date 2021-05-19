@@ -1,5 +1,5 @@
-FROM adoptopenjdk/openjdk16:debian-jre
-# alpine linux with java runtime
+FROM debian:sid-slim
+# debian test
 MAINTAINER William Dizon <wdchromium@gmail.com>
 
 #update and accept all prompts
@@ -12,12 +12,14 @@ RUN apt-get update && apt-get install -y \
   curl \
   rlwrap \
   npm \
+  openjdk-16-jre-headless \
   ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   
 #install node from nodesource
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-  && apt-get install -y nodejs
+RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
+ && dpkg -i node.deb \
+ && rm node.deb
 #RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
 # && dpkg -i node.deb \
 # && rm node.deb
@@ -40,12 +42,12 @@ RUN cd /usr/games/minecraft \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #configure and run supervisor
-#RUN cp /usr/games/minecraft/init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
-#CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+RUN cp /usr/games/minecraft/init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
 
-#entrypoint allowing for setting of mc password
-#COPY entrypoint.sh /entrypoint.sh
-#ENTRYPOINT ["/entrypoint.sh"]
+entrypoint allowing for setting of mc password
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 8443 25565-25570
 VOLUME /var/games/minecraft
