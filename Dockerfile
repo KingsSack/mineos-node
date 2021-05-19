@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   rlwrap \
   npm \
+  ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   
 #install node from nodesource
@@ -29,14 +30,14 @@ RUN mkdir /usr/games/minecraft \
   && chmod +x webui.js mineos_console.js service.js
 
 #build npm deps and clean up apt for image minimalization
-#RUN cd /usr/games/minecraft \
-#  && apt-get update \
-#  && apt-get install -y build-essential \
-#  && npm install \
-#  && apt-get remove --purge -y build-essential \
-#  && apt-get autoremove -y \
-#  && apt-get clean \
-#  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN cd /usr/games/minecraft \
+  && apt-get update \
+  && apt-get install -y build-essential \
+  && npm install \
+  && apt-get remove --purge -y build-essential \
+  && apt-get autoremove -y \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #configure and run supervisor
 #RUN cp /usr/games/minecraft/init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
