@@ -1,5 +1,5 @@
-FROM adoptopenjdk/openjdk16:debianslim-jre
-# debian test
+  
+FROM debian:stretch
 MAINTAINER William Dizon <wdchromium@gmail.com>
 
 #update and accept all prompts
@@ -11,15 +11,14 @@ RUN apt-get update && apt-get install -y \
   git \
   curl \
   rlwrap \
+  oracle-java16-installer \
+  ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-  
+
 #install node from nodesource
 RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
  && dpkg -i node.deb \
  && rm node.deb
-#RUN curl https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/nodejs_8.9.4-1nodesource1_amd64.deb > node.deb \
-# && dpkg -i node.deb \
-# && rm node.deb
 
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
@@ -42,7 +41,7 @@ RUN cd /usr/games/minecraft \
 RUN cp /usr/games/minecraft/init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
 
-entrypoint allowing for setting of mc password
+#entrypoint allowing for setting of mc password
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
