@@ -2,6 +2,8 @@
 FROM debian:stretch
 MAINTAINER William Dizon <wdchromium@gmail.com>
 
+RUN add-apt-repository ppa:linuxuprising/java \
+
 #update and accept all prompts
 RUN apt-get update && apt-get install -y \
   supervisor \
