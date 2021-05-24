@@ -1,8 +1,6 @@
   
-FROM debian:stretch
+FROM adoptopenjdk/openjdk16:debianslim-jre
 MAINTAINER William Dizon <wdchromium@gmail.com>
-
-RUN add-apt-repository ppa:linuxuprising/java \
 
 #update and accept all prompts
 RUN apt-get update && apt-get install -y \
@@ -13,8 +11,6 @@ RUN apt-get update && apt-get install -y \
   git \
   curl \
   rlwrap \
-  oracle-java16-installer \
-  ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #install node from nodesource
